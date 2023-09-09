@@ -5,7 +5,8 @@ namespace _2910_Lab001
     internal class Program
     {
         const string filePath = @"..\..\..\videogames.csv";
-        const string lineBreak = "\n===============================\n";
+        const string lineBreak = "\n-----------------------------------\n";
+        // Used for Title Case string formatting; matches CSV data
         static TextInfo CultureText = new CultureInfo("en-us", false).TextInfo;
 
         static List<VideoGame> csvGames = new List<VideoGame>();
@@ -42,8 +43,9 @@ namespace _2910_Lab001
             csvGames.Sort();
 
             PublisherData();
-
+            Console.Clear();
             GenreData();
+            Console.Clear();
         }
 
 
@@ -78,15 +80,17 @@ namespace _2910_Lab001
                 PrintQueryList(ByPublisherList);
 
                 // Proportion meeting criteria
-                float proportion = ByPublisherList.Count / csvGames.Count * 100;
+                float proportion = ((float)ByPublisherList.Count / csvGames.Count) * 100;
                 // Format calculated float to print with 2 decimal places
                 string proportionString = proportion.ToString("F2");
                 // Print results to screen
+                Console.WriteLine(lineBreak);
                 Console.WriteLine($"Out of the {csvGames.Count} games, {ByPublisherList.Count} of them were published by {input}.");
                 Console.WriteLine($"Proportion of games developed by {input}: {proportionString}%");
 
-                Console.WriteLine(lineBreak);
+                
                 input = "";
+                Console.WriteLine(lineBreak);
             }
         }
 
@@ -122,13 +126,14 @@ namespace _2910_Lab001
                 PrintQueryList(ByGenreList);
 
                 // Calculate proportion, format to 00.00%; print results
-                float proportion = ByGenreList.Count / csvGames.Count * 100;
+                float proportion = ((float)ByGenreList.Count / csvGames.Count) * 100;
                 string proportionString = proportion.ToString("F2");
+                Console.WriteLine(lineBreak);
                 Console.WriteLine($"Out of the {csvGames.Count} games, {ByGenreList.Count} of them are in the \'{input}\' genre.");
                 Console.WriteLine($"Proportion of games in the genre \'{input}\' : {proportionString}%");
 
-                Console.WriteLine(lineBreak);
                 input = "";
+                Console.WriteLine(lineBreak);
             }
         }
 
